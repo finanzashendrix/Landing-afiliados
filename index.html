@@ -1,96 +1,250 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Farmacia Digital de Bienestar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Wellness Pharmacy – Sleeplean, ProDentim, Audifort</title>
+  <meta name="description" content="Your digital wellness pharmacy. Explore curated supplements like Sleeplean (better sleep), ProDentim (oral health), and Audifort (hearing support)." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f5fdfb;
-      color: #333;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#f7fbff;           /* clinic-clean background */
+      --card:#ffffff;         /* product card */
+      --ink:#0f172a;          /* dark text */
+      --muted:#5b7083;        /* muted text */
+      --brand:#0a69ff;        /* pharmacy blue */
+      --brand-2:#11b5e5;      /* accent blue */
+      --ok:#16a34a;           /* trust green */
+      --warning:#ffcc00;      /* CTA accent */
+      --ring:rgba(10,105,255,.15);
+      --shadow: 0 8px 30px rgba(2, 32, 71, .08);
+      --radius: 16px;
     }
-    header {
-      background-color: #dff6f0;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: #2a7d62;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    .product {
-      background-color: #ffffff;
-      margin: 1.5rem auto;
-      padding: 1.5rem;
-      max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .product h2 {
-      color: #2a7d62;
-      margin-top: 0;
-    }
-    .product p {
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-    .cta-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #2a7d62;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .cta-button:hover {
-      background-color: #1f5e4a;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    a{text-decoration:none;color:inherit}
+
+    /* Header */
+    .topbar{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;background:linear-gradient(90deg, #e8f3ff, #f4fbff);}    
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #e6eef8;border-radius:999px;padding:6px 12px;font-size:12px;color:var(--muted)}
+    .badge svg{width:16px;height:16px}
+
+    header.hero{padding:64px 20px 28px;text-align:center;background:radial-gradient(1200px 400px at 50% -50%, #dff0ff 1%, rgba(223,240,255,0) 60%);}    
+    .brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+    .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:inset 0 0 0 4px rgba(255,255,255,.85)}
+    .brand span{font-weight:700;font-size:18px;letter-spacing:.5px}
+    .h1{font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:44px;line-height:1.05;margin:0 0 14px}
+    .sub{max-width:720px;margin:0 auto;color:var(--muted);font-size:18px}
+    .cta-row{margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;padding:14px 22px;border-radius:12px;font-weight:600;box-shadow:0 6px 18px rgba(10,105,255,.25)}
+    .btn.alt{background:#fff;color:var(--brand);border:1px solid #cfe3ff}
+    .btn:hover{transform:translateY(-1px)}
+
+    /* Grid */
+    .wrap{max-width:1120px;margin:0 auto;padding:24px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    @media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:680px){.grid{grid-template-columns:1fr}}
+
+    /* Card */
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #eaf2ff;overflow:hidden;display:flex;flex-direction:column}
+    .card-head{padding:18px 18px 0;display:flex;align-items:center;gap:12px}
+    .pill{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#eef6ff,#ffffff);border:1px solid #e6eef8}
+    .title{font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:20px}
+    .kicker{color:var(--muted);font-size:13px;margin-top:2px}
+    .art{padding:8px 18px 0}
+    .art .illus{width:100%;height:200px;border-radius:14px;background:linear-gradient(180deg,#f8fbff,#eef5ff);display:grid;place-items:center;border:1px solid #e9f0fb}
+    .art svg{width:110px;height:110px}
+    .copy{padding:12px 18px 6px;color:#344a5f}
+    .bullets{padding:0 18px 8px;display:grid;gap:10px}
+    .bullet{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#2c3b4a}
+    .bullet svg{width:18px;height:18px;flex-shrink:0}
+    .cta{display:flex;gap:10px;align-items:center;padding:14px 18px 20px;margin-top:auto}
+    .btn-ghost{flex:1;display:inline-flex;justify-content:center;align-items:center;gap:10px;padding:12px;border-radius:12px;border:1px solid #d5e5ff;background:#fff;color:var(--brand);font-weight:600}
+    .btn-ghost:hover{box-shadow:0 6px 18px var(--ring)}
+
+    /* Trust strip */
+    .trust{margin:34px auto 6px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;color:var(--muted);font-size:13px}
+    .trust .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #e6eef8;border-radius:999px;padding:8px 12px}
+    .trust svg{width:16px;height:16px}
+
+    footer{padding:40px 24px;color:var(--muted);text-align:center}
+    footer a{color:var(--brand)}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Tu Farmacia Digital de Bienestar</h1>
-    <p>Soluciones naturales para dormir mejor, cuidar tu sonrisa y proteger tu audición.</p>
+  <!-- Top trust bar -->
+  <div class="topbar">
+    <span class="badge" title="Encrypted checkout">
+      <!-- lock icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Secure & trusted recommendations
+    </span>
+    <span class="badge" title="Curated supplements">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15V6a2 2 0 0 0-2-2H7"/><path d="M3 8v10a2 2 0 0 0 2 2h12"/><path d="M3 8h18"/></svg>
+      Curated by Solut · Wellness Market
+    </span>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <span>Digital Wellness Pharmacy</span>
+    </div>
+    <h1 class="h1">Better Sleep. Stronger Health. Trusted Essentials.</h1>
+    <p class="sub">Carefully selected supplements that support your sleep, oral health, and hearing. Clean design, honest benefits, and fast access to the offer you want.</p>
+    <div class="cta-row">
+      <a class="btn" href="#products">Explore Products</a>
+      <a class="btn alt" href="#why">Why trust us?</a>
+    </div>
   </header>
 
-  <section class="product">
-    <h2>🌙 Sleeplean — Descanso Profundo</h2>
-    <p>Suplemento natural para mejorar la calidad del sueño. Ideal para quienes luchan con insomnio, estrés o fatiga mental.</p>
-    <a class="cta-button" href="https://hop.clickbank.net/?affiliate=dylanrtz&vendor=sleeplean&h=P%C3%A1gina%20VSL%20(recomendada)&cbpage=welcome" target="_blank">Probar Sleeplean</a>
-  </section>
+  <!-- Products Grid -->
+  <main id="products" class="wrap">
+    <div class="grid">
+      <!-- Sleeplean -->
+      <article class="card" aria-labelledby="ttl-sleeplean">
+        <div class="card-head">
+          <div class="pill" aria-hidden="true">
+            <!-- moon icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <div>
+            <div id="ttl-sleeplean" class="title">Sleeplean</div>
+            <div class="kicker">Sleep Support Supplement</div>
+          </div>
+        </div>
+        <div class="art">
+          <div class="illus" role="img" aria-label="Calm bedroom night scene with soft moonlight">
+            <!-- simple bottle + moon illustration -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stop-color="#eaf4ff"/><stop offset="100%" stop-color="#ffffff"/></linearGradient>
+              </defs>
+              <rect x="0" y="0" width="200" height="200" fill="#f2f7ff"/>
+              <circle cx="160" cy="40" r="20" fill="#cfe6ff"/>
+              <rect x="78" y="60" width="44" height="90" rx="8" fill="url(#g1)" stroke="#d6e7ff"/>
+              <rect x="86" y="48" width="28" height="16" rx="6" fill="#eaf2ff" stroke="#d6e7ff"/>
+            </svg>
+          </div>
+        </div>
+        <div class="copy">Fall asleep faster, stay asleep longer, and wake up refreshed.</div>
+        <div class="bullets">
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Promotes deeper, uninterrupted sleep</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l3 3"/></svg> Supports natural sleep cycle</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Morning energy & focus</div>
+        </div>
+        <div class="cta">
+          <a class="btn-ghost" target="_blank" rel="nofollow noopener noreferrer" href="https://hop.clickbank.net/?affiliate=dylanrtz&vendor=sleeplean&h=P%C3%A1gina%20VSL%20(recomendada)&cbpage=welcome">View Offer</a>
+        </div>
+      </article>
 
-  <section class="product">
-    <h2>😁 Prodentim — Cuidado Dental Avanzado</h2>
-    <p>Probióticos para encías fuertes, aliento fresco y esmalte protegido. Más que una pasta, es una revolución oral.</p>
-    <a class="cta-button" href="https://hop.clickbank.net/?affiliate=dylanrtz&vendor=prodentim&cbpage=tsl&affop=1" target="_blank">Descubrir Prodentim</a>
-  </section>
+      <!-- ProDentim -->
+      <article class="card" aria-labelledby="ttl-prodentim">
+        <div class="card-head">
+          <div class="pill" aria-hidden="true">
+            <!-- tooth icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s2-5 5-5 5 5 5 5V8a7 7 0 0 0-12-5A7 7 0 0 0 0 8v14s2-5 5-5 5 5 5 5"/></svg>
+          </div>
+          <div>
+            <div id="ttl-prodentim" class="title">ProDentim</div>
+            <div class="kicker">Oral & Gum Health</div>
+          </div>
+        </div>
+        <div class="art">
+          <div class="illus" role="img" aria-label="Clean tooth with mint freshness">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="200" height="200" fill="#f2f7ff"/>
+              <circle cx="150" cy="50" r="16" fill="#d2f7ec"/>
+              <path d="M100 60c25 0 35 20 35 36 0 27-16 24-21 53-2 10-8 9-14 3-6 6-12 7-14-3-5-29-21-26-21-53 0-16 10-36 35-36z" fill="#ffffff" stroke="#d6e7ff"/>
+            </svg>
+          </div>
+        </div>
+        <div class="copy">Daily probiotic formula that supports healthy gums, teeth and fresh breath.</div>
+        <div class="bullets">
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Strengthens gum barrier</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5 9h14"/></svg> Probiotic balance for your mouth</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2"/><path d="M7 17l-5-5 5-5"/><path d="M17 7l5 5-5 5"/></svg> Fresh breath confidence</div>
+        </div>
+        <div class="cta">
+          <a class="btn-ghost" target="_blank" rel="nofollow noopener noreferrer" href="https://hop.clickbank.net/?affiliate=dylanrtz&vendor=prodentim&cbpage=tsl&affop=1">View Offer</a>
+        </div>
+      </article>
 
-  <section class="product">
-    <h2>👂 Audifort — Escucha la Vida</h2>
-    <p>Suplemento auditivo para reducir zumbidos y mejorar la audición. Ideal para adultos mayores o quienes trabajan en ambientes ruidosos.</p>
-    <a class="cta-button" href="https://hop.clickbank.net/?custom=1&affiliate=dylanrtz&vendor=audifort&pid=new" target="_blank">Conocer Audifort</a>
-  </section>
+      <!-- Audifort -->
+      <article class="card" aria-labelledby="ttl-audifort">
+        <div class="card-head">
+          <div class="pill" aria-hidden="true">
+            <!-- ear icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 8A5.5 5.5 0 1 1 17 13c0 3-2 5-3 5s-1-1-2-1-1 1-2 1-2-2-2-4"/><path d="M8 8a3 3 0 1 1 6 0"/></svg>
+          </div>
+          <div>
+            <div id="ttl-audifort" class="title">Audifort</div>
+            <div class="kicker">Hearing Support</div>
+          </div>
+        </div>
+        <div class="art">
+          <div class="illus" role="img" aria-label="Sound waves and calm ear illustration">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <rect width="200" height="200" fill="#f2f7ff"/>
+              <circle cx="65" cy="100" r="26" fill="#e6f3ff"/>
+              <path d="M120 80c18 0 30 14 30 30 0 18-12 32-22 32-6 0-8-4-12-4s-6 4-12 4c-10 0-22-14-22-32 0-16 12-30 30-30z" fill="#ffffff" stroke="#d6e7ff"/>
+              <path d="M150 100h20M150 88h16M150 112h16" stroke="#b8d7ff" stroke-width="4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="copy">Daily support for clearer hearing and calm ear comfort.</div>
+        <div class="bullets">
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Promotes auditory clarity</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16"/><path d="M10 8l-4 4 4 4"/></svg> Eases ringing distractions</div>
+          <div class="bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 6v6"/></svg> Simple daily routine</div>
+        </div>
+        <div class="cta">
+          <a class="btn-ghost" target="_blank" rel="nofollow noopener noreferrer" href="https://hop.clickbank.net/?custom=1&affiliate=dylanrtz&vendor=audifort&pid=new">View Offer</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Trust Strip -->
+    <div id="why" class="trust">
+      <span class="chip" title="SSL & Trusted Payments">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure checkout via official partners
+      </span>
+      <span class="chip" title="Curated listings only">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        Curated & tested offers
+      </span>
+      <span class="chip" title="Fast access">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 6v6l3 3"/></svg>
+        Quick purchase flow
+      </span>
+    </div>
+  </main>
 
   <footer>
-    © 2025 Farmacia Digital — Productos seleccionados por su efectividad y respaldo.
+    <div>© <span id="y"></span> Digital Wellness Pharmacy · All rights reserved.</div>
+    <div style="margin-top:6px">This site contains affiliate links. If you click and purchase, we may earn a commission at no extra cost to you.</div>
   </footer>
+
+  <script>
+    // tiny enhancement: current year & outbound click tracking
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // basic UTM passthrough example (optional). Append ?src=github to URLs if present
+    const params = new URLSearchParams(window.location.search);
+    const src = params.get('src');
+    if(src){
+      document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+        try{
+          const u = new URL(a.href);
+          u.searchParams.set('src', src);
+          a.href = u.toString();
+        }catch(e){}
+      })
+    }
+  </script>
 </body>
 </html>
+
 
